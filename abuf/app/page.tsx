@@ -7,10 +7,14 @@ import { formatDate } from "@/lib/utils"
 import { getPosts } from "@/lib/data"
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
+import { client } from '@/lib/sanity'
+import { eventSlugsQuery } from '@/lib/queries'
+import {urlFor} from "@/lib/sanity"
+// import Link from 'next/link'
 
-export default function Home() {
-  const posts = getPosts().slice(0, 6)
-
+export default async function Home() {
+  const posts = await client.fetch(eventSlugsQuery)
+  console.log(posts[0])
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
@@ -55,15 +59,18 @@ export default function Home() {
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {posts.map((post) => (
+              {posts.map((post,i) => {
+                // console.log(post,111)
+                // if (post.name !== undefined)
+                return(
                 <Card
-                  key={post.slug}
+                  key={i}
                   className="flex flex-col overflow-hidden border border-border bg-card transition-all hover:shadow-lg"
                 >
                   <CardHeader className="p-0">
                     <div className="relative h-48 w-full overflow-hidden">
                       <img
-                        src={post.image || "/placeholder.svg"}
+                        src={urlFor(post.image).url() || "/placeholder.svg"}
                         alt={post.title}
                         className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
                       />
@@ -74,21 +81,21 @@ export default function Home() {
                       <Badge variant="outline" className="text-xs">
                         {post.category}
                       </Badge>
-                      <span className="text-xs text-muted-foreground">{formatDate(post.date)}</span>
+                      <span className="text-xs text-muted-foreground"></span>
                     </div>
                     <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-                    <p className="text-muted-foreground flex-1">{post.excerpt}</p>
+                    <p className="text-muted-foreground flex-1">{post.title}</p>
                   </CardContent>
                   <CardFooter className="p-6 pt-0">
                     <Button asChild variant="ghost" className="w-full group">
-                      <Link href={`/blog/${post.slug}`}>
+                      <Link href={`/events/${post.slug.current}`}>
                         Read More
                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </Button>
                   </CardFooter>
                 </Card>
-              ))}
+              )})}
             </div>
             <div className="flex justify-center mt-10">
               <Button asChild variant="outline" size="lg">
@@ -105,3 +112,31 @@ export default function Home() {
     </div>
   )
 }
+
+
+
+
+// import { client } from '@/lib/sanity'
+// import { eventSlugsQuery } from '@/lib/queries'
+// import Link from 'next/link'
+
+// export default async function HomePage() {
+//   // Fetch a list of slugs or event titles
+//   const events = await client.fetch(eventSlugsQuery)
+
+//   return (
+//     <div className="p-8">
+//       <h1 className="text-3xl font-bold">Events</h1>
+//       <ul className="mt-4">
+//         {events.map((slug: string) => (
+//           <li key={slug} className="mt-2">
+//             <Link href={`/events/${slug}`} className="text-blue-500 hover:underline">
+//               {slug}
+//             </Link>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   )
+//}
+
