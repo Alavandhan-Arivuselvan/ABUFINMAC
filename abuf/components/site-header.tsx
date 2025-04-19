@@ -9,7 +9,7 @@ import { Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/components/auth-provider"
 import ThemeToggle from "@/components/theme-toggle"
-
+import Image from "next/image";
 export default function SiteHeader() {
   const pathname = usePathname()
   const { isAuthenticated } = useAuth()
@@ -38,8 +38,12 @@ export default function SiteHeader() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-full bg-gradient-primary"></div>
-            <span className="font-bold text-xl">Nebula</span>
+            <Image src={"/logo.png"} 
+              alt="logo"
+              className="mb-2"
+              width={70}
+              height={30}/>            
+            <span className="font-bold text-xl ">ABUFINMAC</span>
           </Link>
         </div>
         <nav className="hidden md:flex items-center gap-6">

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import ThemeToggle from "@/components/theme-toggle"
-
+import Image from "next/image"
 export default function AdminHeader() {
   const pathname = usePathname()
 
@@ -26,8 +26,12 @@ export default function AdminHeader() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
           <Link href="/admin" className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-full bg-primary"></div>
-            <span className="font-bold text-xl">Nebula Admin</span>
+                 <Image src={"/logo.png"} 
+                          alt="logo"
+                          className="mb-2"
+                          width={70}
+                          height={30}/>            
+                        <span className="font-bold text-xl ">ABUFINMAC</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             {routes.map((route) => (

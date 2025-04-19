@@ -29,10 +29,10 @@ export default async function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                  Welcome to <span className="text-gradient">Nebula</span> Blog
+                  Welcome to <span className="text-gradient">ABUFINMAC</span> 
                 </h1>
                 <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                  Explore the universe of ideas, technology, and inspiration in our digital space.
+                  EMPOWERING YOUR FINANCIAL SUCCESS
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
