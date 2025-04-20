@@ -79,7 +79,7 @@ export default function SiteHeader() {
             </Link>
           )}
           <ThemeToggle />
-          <Button asChild variant="outline" size="lg" className="bg-gradient-primary">
+          <Button asChild variant="outline" size="lg" className="bg-gradient-primary rounded-full">
                   <Link href="">MEET </Link>
           </Button>
           
