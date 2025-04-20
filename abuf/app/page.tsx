@@ -39,7 +39,7 @@ export default async function Home() {
                 <Button asChild size="lg" className="bg-gradient-primary">
                   <Link href="#recent-posts">Explore Articles</Link>
                 </Button>
-                <Button variant="outline" size="lg" className="border-primary/20 hover:border-primary/40">
+                <Button asChild variant="outline" size="lg" className="border-primary/20 hover:border-primary/40">
                   <Link href="/about">About Us</Link>
                 </Button>
               </div>

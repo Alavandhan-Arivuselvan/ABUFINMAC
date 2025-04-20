@@ -10,7 +10,11 @@ import SiteFooter from "@/components/site-footer"
 
 export default function BlogPage() {
   const posts = getPosts()
-
+  let items=[{key:1,name:"all"},
+    {key:2,name:"Finance"},
+    {key:3,name:"Management"},
+    {key:4,name:"Taxation"}
+  ]
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
@@ -30,6 +34,11 @@ export default function BlogPage() {
                   Browse our complete collection of articles
                 </p>
               </div>
+            </div>
+            <div className="flex gap-2 mb-1">
+              {items.map((e)=>(<Button  variant="ghost" key={e.key} className="dark:bg-slate-950 bg-slate-100 hover:bg-slate-200  dark:hover:bg-slate-800">{e.name}</Button>))}
+              
+              
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {posts.map((post) => (
